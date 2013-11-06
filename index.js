@@ -115,8 +115,7 @@
           self.emit('uploadfailed', 'XHR error.');
         };
 
-        xhr.onprogress = function(evt) {
-          console.log('onprogress...');
+        xhr.upload.onprogress = function(evt) {
           if (evt.lengthComputable) self.emit('uploadprogress', file, evt.total, evt.loaded);
         };
 
@@ -154,6 +153,8 @@
   };
 
 
+
   this.Cors3 = cors3;
 
 }).call(this);
+
