@@ -156,5 +156,4 @@
 
   this.Cors3 = cors3;
 
-}).call(this);
-
+}.call(this));
