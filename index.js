@@ -112,7 +112,7 @@
         };
 
         xhr.onerror = function() {
-          self.emit('uploadcompleted', 'XHR error.', null);
+          self.emit('uploadcompleted', 'XHR error.', file);
         };
 
         xhr.upload.onprogress = function(evt) {
