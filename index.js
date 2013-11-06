@@ -51,7 +51,7 @@
 
     this.signFile(file, function(err, signedFile) {
       self.emit('filesigned', err, signedFile);
-      self.puts3(signedFile);
+      if (!err) self.puts3(signedFile);
     });
   };
 
@@ -105,14 +105,14 @@
 
         xhr.onload = function() {
           if (xhr.status === 200) {
-            self.emit('uploadcompleted', file);
+            self.emit('uploadcompleted', null, file);
           } else {
-            self.emit('uploadfailed', {status: this.status, response: this.responseText}, file);
+            self.emit('uploadcompleted', {status: this.status, response: this.responseText}, file);
           }
         };
 
         xhr.onerror = function() {
-          self.emit('uploadfailed', 'XHR error.');
+          self.emit('uploadcompleted', 'XHR error.', null);
         };
 
         xhr.upload.onprogress = function(evt) {
@@ -157,3 +157,4 @@
   this.Cors3 = cors3;
 
 }.call(this));
+
