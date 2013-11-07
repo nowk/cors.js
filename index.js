@@ -116,7 +116,10 @@
         };
 
         xhr.upload.onprogress = function(evt) {
-          if (evt.lengthComputable) self.emit('uploadprogress', file, evt.total, evt.loaded);
+          if (evt.lengthComputable) {
+            var percent = Math.round((evt.loaded / evt.total) * 100);
+            self.emit('uploadprogress', file, evt.total, evt.loaded, percent);
+          }
         };
 
         xhr.abort = function() {
