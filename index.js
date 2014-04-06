@@ -81,6 +81,7 @@
         for (var k in json) {
           if (json.hasOwnProperty(k)) file[k] = json[k];
         }
+        file.filesize = file.file.size;
 
         callback(null, file);
 
