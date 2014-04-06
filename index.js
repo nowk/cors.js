@@ -24,6 +24,7 @@
 
   cors3.prototype.useAcl          = 'private';
   cors3.prototype.useSignatureUrl = '/sign/my/s3';
+  cors3.prototype.path = '/uploads';
 
 
   /*
@@ -65,7 +66,11 @@
       , xhr  = new XMLHttpRequest()
       ;
 
-    var params = '?mimetype='+file.file.type+'&filename='+file.file.name;
+    var params = '?'+[
+      'mimetype='+file.file.type,
+      'filename='+file.file.name,
+      'path='+this.path
+    ].join("&");
 
     xhr.open('GET', this.useSignatureUrl+params);
 
